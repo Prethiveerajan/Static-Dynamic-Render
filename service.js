@@ -3,30 +3,30 @@ const userRouter = express.Router()
 
 const Service = [
     {
-        'Services' : 'gameDeveloper',
+        'services' : 'gameDeveloper',
         'charge' : 2500,
-        'Dur' : 'TwoWeeks'
+        'Dur' : 2
     },
     {
-        'Services' : 'webDesigner',
+        'services' : 'webDesigner',
         'charge' : 4500,
-        'Dur' : 'TwoWeeks'
+        'Dur' : 2
     },
     {
-        'Services' : 'backendDeveloper',
+        'services' : 'backendDeveloper',
         'charge' : 3500,
-        'Dur' : 'TwoWeeks'
+        'Dur' : 2
     },
     {
-        'Services' : 'FrontendDeveloper',
+        'services' : 'FrontendDeveloper',
         'charge' : 5000,
-        'Dur' : 'TwoWeeks'
+        'Dur' : 2
 
     },
     {
-        'Services' : 'UiDesigner',
+        'services' : 'UiDesigner',
         'charge' : 3500,
-        'Dur' : 'TwoWeeks'
+        'Dur' : 2
     }
     
 ]
@@ -42,10 +42,11 @@ userRouter.get('/serve',(request,response)=>{
 })
 userRouter.post('/',(request,response)=>{
     console.log(request.body.Service,request.body.Charges,request.body.time)
-    Service.push({Services:request.body.Service,charge :request.body.Charges,Dur :request.body.time})
+    Service.push({services:request.body.Service,charge :request.body.Charges,Dur :request.body.time})
+    response.redirect(`/service/${Service.length}`)
 })
-userRouter.get('/:id([0-9]{1})',(request,response)=>{
-    response.send(`${request.Serve.Services} with charges ${request.server.charge} duration ${request.body.Dur}`)
+userRouter.get('/:id',(request,response)=>{
+    response.send(`$ Service ={request.serve.services} charges =${request.serve.charge} duration =${request.serve.Dur} week`)
 
 })
 module.exports = userRouter;
